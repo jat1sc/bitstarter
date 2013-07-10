@@ -48,7 +48,6 @@ var loadChecks = function(checksfile) {
 };
 
 var checkHtml = function(htmlData, checksfile) {
-    console.log("in checkHTML");
     $=cheerio.load(htmlData);
     var checks = loadChecks(checksfile).sort();
     var out = {};
@@ -56,9 +55,8 @@ var checkHtml = function(htmlData, checksfile) {
 	var present = $(checks[ii]).length > 0;
 	out[checks[ii]] = present;
     }
-    console.log("checkHtml returns out = "+out);
     outJson = JSON.stringify(out,null,4);
-    console.log("outjson = "+outJson);
+    console.log(outJson);
 
 };
 
@@ -74,8 +72,6 @@ var clone = function(fn) {
 var buildFn = function(checksfile) {
 
     var processURL = function(result, response) {
-	console.log("Result = "+result);
-	console.log("Response = "+response);
 	checkHtml(result,checksfile);
     };
     return processURL;
@@ -95,11 +91,9 @@ if(require.main == module) {
      processURL = buildFn(program.checks);
  
     if(program.url) {
-	console.log("URL entered");
         rest.get("http://vast-shore-3806.herokuapp.com").on('complete',clone(processURL));
 	}
     else {
-	console.log("No URL entered");
 	checkHtml(fs.readFileSync(program.file),program.checks);
 	}
 }
