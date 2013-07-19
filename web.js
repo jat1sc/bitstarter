@@ -2,7 +2,9 @@ var express = require('express');
 var fs = require('fs');
 
 
+// the usage below is deprecated, replaced as shown
 var app = express.createServer(express.logger());
+// var app = express();
 
 app.get('/', function(request, response) {
 
@@ -13,7 +15,7 @@ app.get('/', function(request, response) {
 
     response.send(output);
     });
-var port = process.env.PORT || 5000;
-app.listen(port, function() {
+var port = process.env.PORT || 8080;
+  app.listen(port, function() {
   console.log("Listening on " + port);
 });
