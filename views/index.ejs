@@ -198,7 +198,7 @@
 		   <!-- media queris -->
 		   <div class="linediv-l">
 		     <% backers = 0; var bc_sum = 0; %>
-		     <% for(var i=0; i<orders.length; i++)) {%>
+		     <% for(var i=0; i<orders.length; i++) {%>
 			<% backers = backers + 1 %>
 			<% bc_sum = bc_sum + orders[i].amount %>
 		     <% } %>	
@@ -212,7 +212,7 @@
 	      </div>
 	      <div class="span4">
 			<div class="linediv-r">
-				<h3>90</h3> <p>days left</p>
+				<h3 id="countdown">0</h3> <p>days left</p>
 			</div>
 	      </div>
 	    </div>
@@ -223,8 +223,8 @@
 		<!-- bootstrap progress bar -->
 		<!-- http://twitter.github.io/bootstrap/components.html#progress -->
 		<div class="thermometer progress active">
-		  <div class="bar bar-success" style="width: 60%;"></div>
-		  <div class="bar bar-warning" style="width: 40%;"></div>
+		  <div class="bar bar-success" style="width: <%= (bc_sum / 10000) * 100 %>%;"></div>
+		  <div class="bar bar-warning" style="width: <%= 100-(bc_sum/10000)*100 %>%;"></div>
 		</div>
 	   </div>
 	  </div>
